@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package teams;
+option go_package = "teampb";
+
+
+message Team {
+    int32 id =1;
+    string name = 2;
+    string description = 3;
+    string department = 4;
+}
+
+message QueryRequest {
+}
+
+message QueryResponse {
+    Team team = 1;
+}
+
+message ViewRequest {
+    int32 id = 1;
+}
+
+message ViewResponse {
+    Team team = 1;
+}
+
+message NewTeamRequest {
+    Team team = 1;
+}
+
+message NewTeamResponse {
+    Team team = 1;
+}
+
+message UpdateTeamRequest {
+    Team team = 1;
+}
+
+message UpdateTeamResponse {
+    Team team = 1;
+}
+
+
+message RemoveTeamRequest {
+    int32 id = 1; 
+}
+
+message RemoveTeamResponse {
+    string status = 1;
+}
+
+
+service TeamService {
+    rpc query(QueryRequest) returns (stream QueryResponse);
+    rpc view(ViewRequest) returns (ViewResponse);
+    rpc create(NewTeamRequest) returns (NewTeamResponse);
+    rpc update(UpdateTeamRequest) returns (UpdateTeamResponse);
+    rpc remove(RemoveTeamRequest) returns (RemoveTeamResponse);
+    
+}
